@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">mycrocastSDKExample</string>
+    <string name="label_listener">Listener</string>
+    <string name="label_genre">Genre</string>
+    <string name="label_language">Language</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_play">Play</string>
+    <string name="button_pause">Pause</string>
+    <string name="label_advertisement">Advertisement</string>
+    <string name="button_advertisement_learn_more">Learn more</string>
+</resources>

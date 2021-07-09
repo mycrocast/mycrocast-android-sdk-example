@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/light_blue"
+    app:cardCornerRadius="@dimen/card_view_corner_radius"
+    app:contentPadding="@dimen/small_padding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_club_logo"
+            android:layout_width="@dimen/small_club_logo"
+            android:layout_height="@dimen/small_club_logo"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_mycrocast_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_streamer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_padding"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/text_main"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_club_logo"
+            app:layout_constraintTop_toTopOf="@+id/iv_club_logo" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_main"
+            app:layout_constraintBottom_toBottomOf="@id/iv_club_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_streamer"
+            app:layout_constraintTop_toBottomOf="@+id/tv_streamer" />
+
+        <TextView
+            android:id="@+id/tv_stream_listener"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_main"
+            app:layout_constraintEnd_toStartOf="@+id/tv_stream_genre"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_stream_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_main"
+            app:layout_constraintEnd_toStartOf="@+id/tv_stream_language"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_stream_listener"
+            app:layout_constraintTop_toTopOf="@+id/tv_stream_listener" />
+
+        <TextView
+            android:id="@+id/tv_stream_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_stream_genre"
+            app:layout_constraintTop_toTopOf="@+id/tv_stream_genre" />
+
+        <TextView
+            android:id="@+id/tv_listener"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/label_listener"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_accent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_genre"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@+id/tv_stream_listener"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stream_listener" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/text_accent"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_listener"
+            app:layout_constraintEnd_toStartOf="@+id/tv_genre"
+            app:layout_constraintTop_toTopOf="@+id/tv_listener" />
+
+        <TextView
+            android:id="@+id/tv_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/label_genre"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_accent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_language"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_listener"
+            app:layout_constraintTop_toTopOf="@+id/tv_listener" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/text_accent"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_genre"
+            app:layout_constraintStart_toEndOf="@+id/tv_genre"
+            app:layout_constraintTop_toTopOf="@+id/tv_genre" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/label_language"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/text_accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_genre"
+            app:layout_constraintTop_toTopOf="@+id/tv_genre" />
+
+        <LinearLayout
+            android:id="@+id/layout_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:background="@drawable/bg_round_corner"
+            android:backgroundTint="@color/dark_blue"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/tiny_padding"
+            app:layout_constraintStart_toStartOf="@+id/tv_listener"
+            app:layout_constraintTop_toBottomOf="@id/tv_listener">
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="@dimen/play_button_small"
+                android:layout_height="@dimen/play_button_small"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_mycrocast_play"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/medium_padding"
+                android:clickable="false"
+                android:singleLine="true"
+                android:text="@string/button_play"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@color/text_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/club_logo_dynamic"
+                app:layout_constraintTop_toTopOf="@+id/club_logo_dynamic" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

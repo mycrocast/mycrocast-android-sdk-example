@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listener_chat_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/chat_room_deactivated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/small_padding"
+            android:gravity="center"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingTop="@dimen/big_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:text="this chat room is currently deactivated"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textColor="@color/text_main"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_blue"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/small_padding">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="16"
+            android:gravity="center"
+            android:minHeight="54dp">
+
+            <EditText
+                android:id="@+id/chatMessageTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_round_corner"
+                android:fadeScrollbars="false"
+                android:gravity="center_vertical|left"
+                android:hint="type here"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/text_main"
+                android:textColorHint="@color/text_accent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sendChatMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/small_padding"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="0"
+            android:backgroundTint="@color/logo_blue"
+            android:scaleType="centerInside"
+            android:text="Send"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>
