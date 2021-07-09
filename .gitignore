@@ -1,6 +1,7 @@
 # Built application files
 *.apk
 *.aar
+!mycrocast_sdk.aar
 *.ap_
 *.aab
 
