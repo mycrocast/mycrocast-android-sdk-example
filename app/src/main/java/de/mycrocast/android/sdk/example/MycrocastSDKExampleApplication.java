@@ -17,8 +17,8 @@ import de.mycrocast.android.sdk.example.network.InternetConnectionWatcherImpl;
  */
 public class MycrocastSDKExampleApplication extends Application implements ErrorReceiving.Observer {
 
-    private static final String API_KEY = "fYt_CchkLQNzjIoD"; // replace with your api key
-    private static final String CUSTOMER_TOKEN = "aaaaa"; // replace with your customer token
+    private static final String API_KEY = "fYt_CchkLQNzjIoD"; // replace with your api key (can be found in mycrocast-Studio)
+    private static final String CUSTOMER_TOKEN = "aaaaa"; // replace with your customer token (can be found in mycrocast-Studio)
 
     private InternetConnectionWatcher connectionWatcher;
 
@@ -32,7 +32,7 @@ public class MycrocastSDKExampleApplication extends Application implements Error
         // add observer for receiving any error occurring in the sdk
         Mycrocast.getErrorReceiving().addObserver(this);
 
-        // initialize the sdk with your credentials, that you can get via the mycrocast-Studio
+        // initialize the sdk with your credentials
         Mycrocast.initialize(API_KEY, CUSTOMER_TOKEN, PreferenceManager.getDefaultSharedPreferences(this));
     }
 

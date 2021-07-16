@@ -25,9 +25,9 @@ import androidx.core.app.NotificationCompat;
 import de.mycrocast.android.sdk.advertisement.play.AdvertisementPlay;
 import de.mycrocast.android.sdk.core.Mycrocast;
 import de.mycrocast.android.sdk.core.util.Optional;
-import de.mycrocast.android.sdk.example.advertisement.AdvertisementPlayActivity;
 import de.mycrocast.android.sdk.example.MycrocastSDKExampleApplication;
 import de.mycrocast.android.sdk.example.R;
+import de.mycrocast.android.sdk.example.advertisement.AdvertisementPlayActivity;
 import de.mycrocast.android.sdk.example.network.InternetConnectionWatcher;
 import de.mycrocast.android.sdk.example.utility.BroadcastIntent;
 import de.mycrocast.android.sdk.example.utility.Constants;
@@ -46,7 +46,7 @@ import de.mycrocast.android.sdk.live.listener.state.PlayState;
  * We react on the LiveStreamListener.Observer to play advertisements that are available for this
  * live stream as well as receiving audio data to play
  * <p>
- * We react on the LiveStreamContainer.Observer to close this service in case our stream was ended
+ * We react on the LiveStreamContainer.Observer to close this service in case our stream has ended
  * <p>
  * We react on LiveStreamListenerState.Observer to update the play state of our audio track
  */
@@ -89,22 +89,26 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         this.isAdvertisementPlaying = false;
 
         this.connectionWatcher = ((MycrocastSDKExampleApplication) this.getApplication()).getConnectionWatcher();
-        this.connectionWatcher.addObserver(this);
 
+        // add observer, we want to get notified
+        this.connectionWatcher.addObserver(this);
         this.liveStreamContainer.addObserver(this);
         this.listenerState.addObserver(this);
 
+        // create broadcast receiver, to receive necessary intents
         this.receiver = this.createBroadcastReceiver();
         this.registerReceiver(this.receiver, this.createIntentFilter());
 
+        // create audio-track
         this.audioTrack = this.createAudioTrack();
         this.audioTrack.setVolume(1.0f);
 
+        // create notification
         Notification notification = this.createNotification();
         this.startForeground(1, notification);
     }
 
-    // create a broadcast-receiver that processes all BroadcastIntents, that will be send.
+    // create a broadcast-receiver that processes all BroadcastIntents that will be send.
     private BroadcastReceiver createBroadcastReceiver() {
         return new BroadcastReceiver() {
             @Override
@@ -153,12 +157,15 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
     }
 
     private void onAdvertisementPlayFinished() {
+        // is there another AdvertisementPlay queued?
+        // if yes, we want to start playing this one
         Optional<AdvertisementPlay> optional = this.listener.getNextAdvertisementPlay();
         if (optional.isPresent()) {
             this.startAdvertisementPlay(optional.get());
             return;
         }
 
+        // else we stop playing advertisements and start playing the livestream again
         this.isAdvertisementPlaying = false;
 
         // resume playing mute music
@@ -170,12 +177,22 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         this.audioTrack.setVolume(1.0f);
     }
 
+    /**
+     * Creates and starts a new AdvertisementPlayActivity for playing and displaying the AdvertisementPlay.
+     *
+     * @param advertisementPlay to play and display in an AdvertisementPlayActivity
+     */
     private void startAdvertisementPlay(AdvertisementPlay advertisementPlay) {
         Intent startIntent = AdvertisementPlayActivity.NewInstance(this, advertisementPlay);
-        startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // needed for starting a activity from a non-activity context
+        startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // needed for starting an activity from a non-activity context
         this.startActivity(startIntent);
     }
 
+    /**
+     * Creates an IntentFilter with all needed actions.
+     *
+     * @return created IntentFilter
+     */
     private IntentFilter createIntentFilter() {
         IntentFilter result = new IntentFilter();
         result.addAction(BroadcastIntent.PAUSE_LIVE_STREAM);
@@ -185,13 +202,21 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         return result;
     }
 
-    // Creates the audioTrack needed to play the received audio-data from the sdk.
-    //
-    // Must-have settings for the audioTrack:
-    // - SampleRate: 48000
-    // - Channel: Mono
-    // - Encoding: PCM-16Bit
-    // - Buffer size: 8 * 1024
+    /**
+     * Creates the audioTrack needed to play the received audio-data from the sdk.
+     * <p>
+     * Must-have settings for the audioTrack:
+     * <p>
+     * - SampleRate: 48000
+     * <p>
+     * - Channel: Mono
+     * <p>
+     * - Encoding: PCM-16Bit
+     * <p>
+     * - Buffer size: 8 * 1024
+     *
+     * @return created AudioTrack
+     */
     private AudioTrack createAudioTrack() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return new AudioTrack(AudioManager.STREAM_MUSIC,
@@ -201,27 +226,29 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
                     8 * 1024, AudioTrack.MODE_STREAM);
         }
 
-        AudioTrack.Builder trackBuilder = new AudioTrack.Builder();
-        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
-
-        trackBuilder.setAudioAttributes(attrBuilder.setUsage(AudioAttributes.USAGE_MEDIA)
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .setLegacyStreamType(AudioManager.STREAM_MUSIC)
-                .build());
+                .build();
 
-        AudioFormat.Builder formatBuilder = new AudioFormat.Builder();
-        trackBuilder.setAudioFormat(formatBuilder.setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+        AudioFormat audioFormat = new AudioFormat.Builder().setEncoding(AudioFormat.ENCODING_PCM_16BIT)
                 .setSampleRate(48000)
                 .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
-                .build());
+                .build();
 
-        trackBuilder.setBufferSizeInBytes(8 * 1024);
-        return trackBuilder.build();
+        return new AudioTrack.Builder().setAudioAttributes(audioAttributes)
+                .setAudioFormat(audioFormat)
+                .setBufferSizeInBytes(8 * 1024)
+                .build();
     }
 
-    // Creates a rudimentary example Notification.
-    // This notification can easily be replaced with a custom one, that has a custom layout.
-    // (e.g: with information about the livestream as well as a play/pause/stop button)
+    /**
+     * Creates a rudimentary example Notification.
+     * This notification can easily be replaced with a custom one, that has a custom layout.
+     * (e.g: with information about the livestream as well as a play/pause/stop button)
+     *
+     * @return created Notification
+     */
     private Notification createNotification() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return new Notification();
@@ -251,6 +278,9 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.liveStreamId = intent.getLongExtra(Constants.LIVE_STREAM_ID_KEY, Constants.INVALID_ID);
+
+        // checking if the current live stream still exists or the provided id is
+        // valid at all, otherwise we stop the service
         Optional<LiveStream> optional = this.liveStreamContainer.find(this.liveStreamId);
         if (optional.isEmpty()) {
             this.stopService();
@@ -259,6 +289,7 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
 
         LiveStream liveStream = optional.get();
 
+        // try to create new LiveStreamListener
         Optional<LiveStreamListener> optionalListener = this.listenerFactory.create(liveStream, this);
         if (optionalListener.isEmpty()) {
             this.stopService();
@@ -312,6 +343,9 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         this.stopSelf();
     }
 
+    /**
+     * Stops playing the mute music, if it is currently playing.
+     */
     private void stopMuteMusic() {
         if (this.muteMusicPlayer == null) {
             return;
@@ -325,6 +359,12 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         this.muteMusicPlayer = null;
     }
 
+    /**
+     * Starts playing the mute music.
+     * Stops old playing of the mute music, if one is currently playing.
+     *
+     * @param muteMusicUrl url to play from
+     */
     private void startMuteMusic(String muteMusicUrl) {
         this.stopMuteMusic();
 
@@ -373,14 +413,18 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         this.audioTrack.write(pcmData, 0, amountToRead);
     }
 
+    /**
+     * The connection to the broadcast was successfully established.
+     */
     @Override
     public void onAudioConnectionEstablished() {
-        // a connection to the broadcast was successfully established
     }
 
+    /**
+     * The connection to the broadcast of the livestream could not be established (after several tries)
+     */
     @Override
     public void onAudioConnectionFailed() {
-        // a connection to the broadcast of the livestream could not be established (after several tries)
         this.stopService();
     }
 
@@ -472,6 +516,7 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
      */
     @Override
     public void onPlayStateChanged(LiveStream liveStream, PlayState playState) {
+        // play state updates of other LiveStreams are not interesting
         if (this.liveStreamId != liveStream.getId()) {
             return;
         }
@@ -497,13 +542,13 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
      */
     @Override
     public void onConnectionEstablished() {
-        this.listener.play();
-
         Optional<LiveStream> optional = this.liveStreamContainer.find(this.liveStreamId);
         if (optional.isEmpty()) {
             this.stopService();
             return;
         }
+
+        this.listener.play();
 
         LiveStream liveStream = optional.get();
         this.isLiveStreamMuted = liveStream.isMuted();
@@ -516,11 +561,15 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
 
     /**
      * Connection to the internet was lost.
-     * We need to stop the play of the livestream.
+     * We need to stop the play of the livestream or mute-music.
      */
     @Override
     public void onConnectionLost() {
         this.listener.stop();
+
+        if (this.isLiveStreamMuted) {
+            this.stopMuteMusic();
+        }
     }
 
     @Nullable

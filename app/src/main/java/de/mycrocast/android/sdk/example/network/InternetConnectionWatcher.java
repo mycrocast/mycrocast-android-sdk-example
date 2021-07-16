@@ -1,12 +1,12 @@
 package de.mycrocast.android.sdk.example.network;
 
 /**
- * Watches changes in the internet connectivity.
+ * Supervises changes in the internet connectivity.
  */
 public interface InternetConnectionWatcher {
 
     /**
-     * Observer that will be notified everytime an connection was lost or established.
+     * Observer that will be notified everytime a connection was lost or (re-)established.
      */
     interface Observer {
 

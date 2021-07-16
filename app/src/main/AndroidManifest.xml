@@ -3,6 +3,9 @@
     package="de.mycrocast.android.sdk.example">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MycrocastSDKExampleApplication"
         android:allowBackup="true"
@@ -25,8 +28,5 @@
         <activity android:name=".advertisement.WebViewActivity" />
         <service android:enabled="true" android:name=".livestream.LiveStreamListenerService" />
     </application>
-
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
