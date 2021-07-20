@@ -18,11 +18,7 @@ allprojects {
         google()
         jcenter()
         maven {
-            url "s3://mycrocast-maven-repo.s3.eu-central-1.amazonaws.com"
-            credentials(AwsCredentials) {
-                accessKey "AKIAQ4W7KMELHZQSWHEZ"
-                secretKey "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"
-            }
+            url "http://mycrocast-maven-repo.s3.eu-central-1.amazonaws.com"
         }
     }
 }
