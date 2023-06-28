@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-import de.mycrocast.android.sdk.advertisement.play.AdvertisementPlay;
-import de.mycrocast.android.sdk.advertisement.play.banner.AdvertisementBanner;
 import de.mycrocast.android.sdk.example.R;
 import de.mycrocast.android.sdk.example.utility.BroadcastIntent;
+import de.mycrocast.android.sdk.spot.play.banner.SpotBanner;
+import de.mycrocast.android.sdk.spot.play.data.SpotPlay;
 
 /**
  * Example activity that displays an advertisement with the provided information
@@ -41,13 +41,13 @@ public class AdvertisementPlayActivity extends AppCompatActivity {
      * @param advertisementPlay - the advertisement we want to display
      * @return the intent that can be used to start this activity
      */
-    public static Intent NewInstance(Context context, AdvertisementPlay advertisementPlay) {
+    public static Intent newInstance(Context context, SpotPlay advertisementPlay) {
         Intent result = new Intent(context, AdvertisementPlayActivity.class);
         result.putExtra(AUDIO_URL_KEY, advertisementPlay.getAudioUrl());
         result.putExtra(DURATION_KEY, advertisementPlay.getDuration());
 
         // the banner of a advertisement is not always present
-        AdvertisementBanner banner = advertisementPlay.getBanner();
+        SpotBanner banner = advertisementPlay.getBanner();
         boolean hasBanner = banner != null;
         result.putExtra(HAS_BANNER_KEY, hasBanner);
         if (hasBanner) {
@@ -99,7 +99,7 @@ public class AdvertisementPlayActivity extends AppCompatActivity {
                 return;
             }
 
-            this.startActivity(WebViewActivity.NewInstance(this, urlToOpen));
+            this.startActivity(WebViewActivity.newInstance(this, urlToOpen));
         });
 
         this.setDataToViews();
@@ -138,12 +138,11 @@ public class AdvertisementPlayActivity extends AppCompatActivity {
 
     /**
      * We are done playing the advertisement, so we can close this view.
-     *
+     * <p>
      * We also need to communicate to our currently running LiveStreamListenerService,
      * that we finished playing the advertisement, so the service can continue playing
      * the livestream or starts the play of a new advertisement.
      * (In this example we use intents for this.)
-     *
      */
     private void onAdvertisementPlayFinished() {
         this.sendBroadcast(new Intent(BroadcastIntent.ON_ADVERTISEMENT_PLAY_FINISHED));
