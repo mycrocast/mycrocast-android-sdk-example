@@ -87,7 +87,7 @@ public class LiveStreamListActivity extends AppCompatActivity implements LiveStr
             this.sendBroadcast(new Intent(BroadcastIntent.STOP_LIVE_STREAM));
         }
 
-        this.startService(LiveStreamListenerService.NewInstance(this, liveStream));
+        this.startService(LiveStreamListenerService.newInstance(this, liveStream));
     }
 
     /**

@@ -24,4 +24,14 @@ public class BroadcastIntent {
      * Intent-Action, telling the LiveStreamListenerService that a AdvertisementPlay was finished.
      */
     public static final String ON_ADVERTISEMENT_PLAY_FINISHED = "advertisement_play_finished";
+
+    /**
+     * Intent-Action, telling the LiveStreamListenerService to adjust the delay accordingly.
+     */
+    public static final String ADJUST_DELAY = "adjust_live_stream_delay";
+
+    /**
+     * Intent-Action, telling the LiveStreamListenerService to remove the existing delay.
+     */
+    public static final String REMOVE_DELAY = "remove_live_stream_delay";
 }

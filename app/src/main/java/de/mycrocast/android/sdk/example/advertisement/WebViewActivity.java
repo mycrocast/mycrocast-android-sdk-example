@@ -21,7 +21,7 @@ public class WebViewActivity extends AppCompatActivity {
      * @param urlToOpen the url of the website, that should be displayed
      * @return Intent for starting a WebViewActivity
      */
-    public static Intent NewInstance(Context context, String urlToOpen) {
+    public static Intent newInstance(Context context, String urlToOpen) {
         Intent result = new Intent(context, WebViewActivity.class);
         result.putExtra(URL_KEY, urlToOpen);
         return result;

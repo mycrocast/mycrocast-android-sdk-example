@@ -3,7 +3,8 @@ package de.mycrocast.android.sdk.example;
 import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import de.mycrocast.android.sdk.core.Mycrocast;
 import de.mycrocast.android.sdk.error.ErrorReceiving;
@@ -33,7 +34,7 @@ public class MycrocastSDKExampleApplication extends Application implements Error
         Mycrocast.getErrorReceiving().addObserver(this);
 
         // initialize the sdk with your credentials
-        Mycrocast.initialize(API_KEY, CUSTOMER_TOKEN, PreferenceManager.getDefaultSharedPreferences(this));
+        Mycrocast.initialize(API_KEY, CUSTOMER_TOKEN, PreferenceManager.getDefaultSharedPreferences(this), 30);
     }
 
     public InternetConnectionWatcher getConnectionWatcher() {
@@ -47,6 +48,5 @@ public class MycrocastSDKExampleApplication extends Application implements Error
      */
     @Override
     public void onError(MycrocastError error) {
-        System.out.println(error.getDescription());
     }
 }

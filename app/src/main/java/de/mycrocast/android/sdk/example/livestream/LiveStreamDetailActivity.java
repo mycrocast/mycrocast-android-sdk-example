@@ -15,12 +15,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import de.mycrocast.android.sdk.core.Mycrocast;
 import de.mycrocast.android.sdk.core.util.Optional;
-import de.mycrocast.android.sdk.example.chat.ListenerChatActivity;
 import de.mycrocast.android.sdk.example.R;
+import de.mycrocast.android.sdk.example.chat.ListenerChatActivity;
 import de.mycrocast.android.sdk.example.utility.BroadcastIntent;
 import de.mycrocast.android.sdk.example.utility.Constants;
 import de.mycrocast.android.sdk.live.container.LiveStreamContainer;
@@ -145,6 +146,15 @@ public class LiveStreamDetailActivity extends AppCompatActivity implements LiveS
 
         MaterialCardView chatCardView = this.findViewById(R.id.card_chat);
         chatCardView.setOnClickListener(v -> LiveStreamDetailActivity.this.openChat());
+
+        MaterialButton addDelayBtn = this.findViewById(R.id.btn_add_delay);
+        addDelayBtn.setOnClickListener(v -> LiveStreamDetailActivity.this.adjustDelay(+1));
+
+        MaterialButton removeDelayBtn = this.findViewById(R.id.btn_remove_delay);
+        removeDelayBtn.setOnClickListener(v -> LiveStreamDetailActivity.this.adjustDelay(-1));
+
+        MaterialButton noDelayBtn = this.findViewById(R.id.btn_delay_live);
+        noDelayBtn.setOnClickListener(v -> LiveStreamDetailActivity.this.removeDelay());
     }
 
     /**
@@ -175,7 +185,7 @@ public class LiveStreamDetailActivity extends AppCompatActivity implements LiveS
             this.sendBroadcast(new Intent(BroadcastIntent.STOP_LIVE_STREAM));
         }
 
-        Intent startIntent = LiveStreamListenerService.NewInstance(this, liveStream);
+        Intent startIntent = LiveStreamListenerService.newInstance(this, liveStream);
         this.startService(startIntent);
     }
 
@@ -207,6 +217,16 @@ public class LiveStreamDetailActivity extends AppCompatActivity implements LiveS
         }
 
         this.startActivity(ListenerChatActivity.newInstance(this, optional.get()));
+    }
+
+    private void adjustDelay(int secondsToAdd) {
+        final Intent adjustDelayIntent = new Intent(BroadcastIntent.ADJUST_DELAY);
+        adjustDelayIntent.putExtra("delay", secondsToAdd);
+        this.sendBroadcast(adjustDelayIntent);
+    }
+
+    private void removeDelay() {
+        this.sendBroadcast(new Intent(BroadcastIntent.REMOVE_DELAY));
     }
 
     @Override
