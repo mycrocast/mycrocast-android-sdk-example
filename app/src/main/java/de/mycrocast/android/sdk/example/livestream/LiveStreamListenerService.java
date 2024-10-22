@@ -182,14 +182,17 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         // else we stop playing advertisements and start playing the livestream again
         this.isAdvertisementPlaying = false;
 
-        // resume playing mute music
-        if (this.muteMusicPlayer != null) {
-            this.muteMusicPlayer.start();
+        // play mute music if livestream is muted or else play the livestream via audio track
+        Optional<LiveStream> optionalLivestream = this.liveStreamContainer.find(this.liveStreamId);
+        if(optionalLivestream.isPresent()) {
+            final LiveStream liveStream = optionalLivestream.get();
+            if(liveStream.isMuted()) {
+                this.startMuteMusic(liveStream.getMuteMusicUrl());
+            } else {
+                this.audioTrack.flush();
+                this.audioTrack.setVolume(1.0f);
+            }
         }
-
-        // unmute the livestream
-        this.audioTrack.flush();
-        this.audioTrack.setVolume(1.0f);
     }
 
     private void adjustDelay(int delay) {
