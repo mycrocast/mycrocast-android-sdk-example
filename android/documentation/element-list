@@ -1,0 +1,17 @@
+de.mycrocast.android.sdk.chat
+de.mycrocast.android.sdk.chat.data
+de.mycrocast.android.sdk.core
+de.mycrocast.android.sdk.core.util
+de.mycrocast.android.sdk.error
+de.mycrocast.android.sdk.live.container
+de.mycrocast.android.sdk.live.data
+de.mycrocast.android.sdk.live.data.description
+de.mycrocast.android.sdk.live.data.language
+de.mycrocast.android.sdk.live.listener
+de.mycrocast.android.sdk.live.listener.state
+de.mycrocast.android.sdk.live.player
+de.mycrocast.android.sdk.live.rating
+de.mycrocast.android.sdk.live.refresh
+de.mycrocast.android.sdk.spot.play.banner
+de.mycrocast.android.sdk.spot.play.data
+de.mycrocast.android.sdk.utility

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chat Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Chat" class="dashAnchor"></a>
+    <a title="Chat Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        Chat Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DelayTimeContainer.html">DelayTimeContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LiveScoringStream.html">LiveScoringStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LiveStream.html">LiveStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mycrocast.html">Mycrocast</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MycrocastAdvertisement.html">MycrocastAdvertisement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MycrocastAssetProvider.html">MycrocastAssetProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MycrocastError.html">MycrocastError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Streamer.html">Streamer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ChatStatus.html">ChatStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorType.html">ErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RatingError.html">RatingError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ReportReason.html">ReportReason</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Sender.html">Sender</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SessionState.html">SessionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UserStreamRating.html">UserStreamRating</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DecodableDefault.html">DecodableDefault</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DecodableDefault.html#/s:12MycrocastSDK16DecodableDefaultO7WrapperV">– Wrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:12MycrocastSDK10MqttClientC">MqttClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UserStream.html">UserStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AdvertisementDelegate.html">AdvertisementDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Advertisements.html">Advertisements</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Chat.html">Chat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ChatDelegate.html">ChatDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ErrorReceiving.html">ErrorReceiving</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Rating.html">Rating</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SessionControl.html">SessionControl</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StreamSessionDelegate.html">StreamSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Streams.html">Streams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StreamsDelegate.html">StreamsDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Message.html">Message</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StreamLanguage.html">StreamLanguage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Team.html">Team</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Chat</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Chat</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP04joinC08streamId8callbackySi_ySayAA7MessageVG_AA0C6StatusOAA0A5ErrorCSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/joinChat(streamId:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP04joinC08streamId8callbackySi_ySayAA7MessageVG_AA0C6StatusOAA0A5ErrorCSgtctF">joinChat(streamId:<wbr>callback:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>To be able to participate in the chat for a stream we first need to join it.
+ After the chat was joined we receive the status of the chat room (enabled or disabled) and receive updates for new
+ chat messages</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">joinChat</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">messages</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Message.html">Message</a></span><span class="p">],</span> <span class="n">_</span> <span class="nv">chatStatus</span><span class="p">:</span> <span class="kt"><a href="../Enums/ChatStatus.html">ChatStatus</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/MycrocastError.html">MycrocastError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP05leaveC08streamIdySi_tF"></a>
+                    <a name="//apple_ref/swift/Method/leaveChat(streamId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP05leaveC08streamIdySi_tF">leaveChat(streamId:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Leave a chat and therefore automatically unsubscribing for receiving and updates on this specific chatroom
+When a stream ends the chat is automatically left</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">leaveChat</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>streamId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the id of the stream</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP10chatJoined8streamIdSbSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/chatJoined(streamId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP10chatJoined8streamIdSbSi_tF">chatJoined(streamId:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Test if the currently are already in the chatroom</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">chatJoined</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>streamId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the id of the stream where we want to know if we are already in the chat</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if currently in the chatroom</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP04sendC7Message8streamId7message8callbackySi_SSySb_AA0A5ErrorCSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/sendChatMessage(streamId:message:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP04sendC7Message8streamId7message8callbackySi_SSySb_AA0A5ErrorCSgtctF">sendChatMessage(streamId:<wbr>message:<wbr>callback:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send a new chat message. A message is can only be at maximum 255 characters long.If the message is longer,
+    it will be the first 255 characters send</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendChatMessage</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/MycrocastError.html">MycrocastError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP03getC8Messages8streamIdSayAA7MessageVGSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/getChatMessages(streamId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP03getC8Messages8streamIdSayAA7MessageVGSi_tF">getChatMessages(streamId:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get all chat messages currently available for a specific chatroom</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getChatMessages</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Message.html">Message</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>streamId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the stream id of the chatroom</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the messages available</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP03getC6Status8streamIdAA0cE0OSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/getChatStatus(streamId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP03getC6Status8streamIdAA0cE0OSi_tF">getChatStatus(streamId:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the chat status for a specific chatroom</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getChatStatus</span><span class="p">(</span><span class="nv">streamId</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/ChatStatus.html">ChatStatus</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>streamId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the id of the stream this chat belongs to</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the status of the chat or disabled if the chat was not joined</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP06reportC7Message7message6reason21additionalInformation8callbackyAA0E0V_AA12ReportReasonOSSySb_AA0A5ErrorCSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/reportChatMessage(message:reason:additionalInformation:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP06reportC7Message7message6reason21additionalInformation8callbackyAA0E0V_AA12ReportReasonOSSySb_AA0A5ErrorCSgtctF">reportChatMessage(message:<wbr>reason:<wbr>additionalInformation:<wbr>callback:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Report a chat message and therefore the user of that chat message
+ The more information the reporter provides the better we can take action</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">reportChatMessage</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt"><a href="../Structs/Message.html">Message</a></span><span class="p">,</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt"><a href="../Enums/ReportReason.html">ReportReason</a></span><span class="p">,</span> <span class="nv">additionalInformation</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                       <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/MycrocastError.html">MycrocastError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the message that will be reported</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reason</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the report reason</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>additionalInformation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>any additional information the user can provide at maximum 255 characters</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>executed when the response is received from the server</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP11addObserver8delegateyAA0C8Delegate_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/addObserver(delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP11addObserver8delegateyAA0C8Delegate_p_tF">addObserver(delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a new delegate to receive updates for the chat</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addObserver</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ChatDelegate.html">ChatDelegate</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the chat update receiving class</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12MycrocastSDK4ChatP14removeObserver8delegateyAA0C8Delegate_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/removeObserver(delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12MycrocastSDK4ChatP14removeObserver8delegateyAA0C8Delegate_p_tF">removeObserver(delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove a delegate from the receiving of chat updates</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeObserver</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ChatDelegate.html">ChatDelegate</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the delegate to remove</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-06-28)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
