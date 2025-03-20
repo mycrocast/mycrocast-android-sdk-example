@@ -11,6 +11,7 @@ import de.mycrocast.android.sdk.error.ErrorReceiving;
 import de.mycrocast.android.sdk.error.MycrocastError;
 import de.mycrocast.android.sdk.example.network.InternetConnectionWatcher;
 import de.mycrocast.android.sdk.example.network.InternetConnectionWatcherImpl;
+import de.mycrocast.android.sdk.live.checker.domain.LivestreamAvailabilityChecker;
 
 /**
  * Starting point of the application, also the point where we initialise the sdk,
@@ -18,8 +19,8 @@ import de.mycrocast.android.sdk.example.network.InternetConnectionWatcherImpl;
  */
 public class MycrocastSDKExampleApplication extends Application implements ErrorReceiving.Observer {
 
-    private static final String API_KEY = "fYt_CchkLQNzjIoD"; // replace with your api key (can be found in mycrocast-Studio)
-    private static final String CUSTOMER_TOKEN = "aaaaa"; // replace with your customer token (can be found in mycrocast-Studio)
+    private static final String API_KEY = ""; // replace with your api key (can be found in mycrocast-Studio)
+    private static final String CUSTOMER_TOKEN = ""; // replace with your customer token (can be found in mycrocast-Studio)
 
     private InternetConnectionWatcher connectionWatcher;
 
@@ -32,6 +33,19 @@ public class MycrocastSDKExampleApplication extends Application implements Error
 
         // add observer for receiving any error occurring in the sdk
         Mycrocast.getErrorReceiving().addObserver(this);
+
+        // check if a livestream of your club is currently online
+        final LivestreamAvailabilityChecker checker = Mycrocast.getLivestreamAvailabilityChecker();
+        checker.isClubLive(CUSTOMER_TOKEN, new LivestreamAvailabilityChecker.ResultCallback() {
+            @Override
+            public void onLivestreamAvailable() {
+                System.out.println("At least one livestream is currently online for your club!");
+            }
+            @Override
+            public void onNoLivestreamOnline() {
+                System.out.println("No livestream online for your club.");
+            }
+        });
 
         // initialize the sdk with your credentials
         Mycrocast.initialize(API_KEY, CUSTOMER_TOKEN, PreferenceManager.getDefaultSharedPreferences(this), 30);
@@ -48,5 +62,6 @@ public class MycrocastSDKExampleApplication extends Application implements Error
      */
     @Override
     public void onError(MycrocastError error) {
+        System.out.println(error.getDescription());
     }
 }
