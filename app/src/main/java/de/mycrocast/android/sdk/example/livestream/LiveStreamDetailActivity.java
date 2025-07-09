@@ -173,16 +173,16 @@ public class LiveStreamDetailActivity extends AppCompatActivity implements LiveS
         LiveStream liveStream = optional.get();
         if (this.liveStreamListenerState.isCurrentLiveStream(liveStream)) {
             if (this.liveStreamListenerState.isCurrentPlayingLiveStream(liveStream)) {
-                this.sendBroadcast(new Intent(BroadcastIntent.PAUSE_LIVE_STREAM));
+                this.sendBroadcast(BroadcastIntent.pauseLivestream());
                 return;
             }
 
-            this.sendBroadcast(new Intent(BroadcastIntent.RESUME_LIVE_STREAM));
+            this.sendBroadcast(new Intent(BroadcastIntent.resumeLivestream()));
             return;
         }
 
         if (this.liveStreamListenerState.hasCurrentLiveStream()) {
-            this.sendBroadcast(new Intent(BroadcastIntent.STOP_LIVE_STREAM));
+            this.sendBroadcast(new Intent(BroadcastIntent.stopLivestream()));
         }
 
         Intent startIntent = LiveStreamListenerService.newInstance(this, liveStream);
@@ -220,13 +220,13 @@ public class LiveStreamDetailActivity extends AppCompatActivity implements LiveS
     }
 
     private void adjustDelay(int secondsToAdd) {
-        final Intent adjustDelayIntent = new Intent(BroadcastIntent.ADJUST_DELAY);
+        final Intent adjustDelayIntent = new Intent(BroadcastIntent.adjustDelay());
         adjustDelayIntent.putExtra("delay", secondsToAdd);
         this.sendBroadcast(adjustDelayIntent);
     }
 
     private void removeDelay() {
-        this.sendBroadcast(new Intent(BroadcastIntent.REMOVE_DELAY));
+        this.sendBroadcast(new Intent(BroadcastIntent.removeDelay()));
     }
 
     @Override
