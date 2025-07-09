@@ -145,7 +145,7 @@ public class AdvertisementPlayActivity extends AppCompatActivity {
      * (In this example we use intents for this.)
      */
     private void onAdvertisementPlayFinished() {
-        this.sendBroadcast(new Intent(BroadcastIntent.ON_ADVERTISEMENT_PLAY_FINISHED));
+        this.sendBroadcast(new Intent(BroadcastIntent.advertisementPlayFinished()));
         this.finish();
     }
 

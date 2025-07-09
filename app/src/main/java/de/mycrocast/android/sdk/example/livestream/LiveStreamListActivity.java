@@ -11,12 +11,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import de.mycrocast.android.sdk.core.Mycrocast;
 import de.mycrocast.android.sdk.example.R;
 import de.mycrocast.android.sdk.example.livestream.adapter.LiveStreamAdapter;
-import de.mycrocast.android.sdk.example.utility.VerticalItemSpacing;
 import de.mycrocast.android.sdk.example.utility.BroadcastIntent;
-import de.mycrocast.android.sdk.live.listener.state.LiveStreamListenerState;
-import de.mycrocast.android.sdk.live.listener.state.PlayState;
+import de.mycrocast.android.sdk.example.utility.VerticalItemSpacing;
 import de.mycrocast.android.sdk.live.container.LiveStreamContainer;
 import de.mycrocast.android.sdk.live.data.LiveStream;
+import de.mycrocast.android.sdk.live.listener.state.LiveStreamListenerState;
+import de.mycrocast.android.sdk.live.listener.state.PlayState;
 import de.mycrocast.android.sdk.live.refresh.LiveStreamRefresher;
 
 /**
@@ -75,16 +75,16 @@ public class LiveStreamListActivity extends AppCompatActivity implements LiveStr
     private void onPlayButtonClicked(LiveStream liveStream) {
         if (this.liveStreamListenerState.isCurrentLiveStream(liveStream)) {
             if (this.liveStreamListenerState.isCurrentPlayingLiveStream(liveStream)) {
-                this.sendBroadcast(new Intent(BroadcastIntent.PAUSE_LIVE_STREAM));
+                this.sendBroadcast(new Intent(BroadcastIntent.pauseLivestream()));
                 return;
             }
 
-            this.sendBroadcast(new Intent(BroadcastIntent.RESUME_LIVE_STREAM));
+            this.sendBroadcast(new Intent(BroadcastIntent.resumeLivestream()));
             return;
         }
 
         if (this.liveStreamListenerState.hasCurrentLiveStream()) {
-            this.sendBroadcast(new Intent(BroadcastIntent.STOP_LIVE_STREAM));
+            this.sendBroadcast(new Intent(BroadcastIntent.stopLivestream()));
         }
 
         this.startService(LiveStreamListenerService.newInstance(this, liveStream));

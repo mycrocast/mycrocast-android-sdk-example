@@ -19,8 +19,8 @@ import de.mycrocast.android.sdk.live.checker.domain.LivestreamAvailabilityChecke
  */
 public class MycrocastSDKExampleApplication extends Application implements ErrorReceiving.Observer {
 
-    private static final String API_KEY = ""; // replace with your api key (can be found in mycrocast-Studio)
-    private static final String CUSTOMER_TOKEN = ""; // replace with your customer token (can be found in mycrocast-Studio)
+    private static final String API_KEY = "fHDYOI1SDw8e5P12"; // replace with your api key (can be found in mycrocast-Studio)
+    private static final String CUSTOMER_TOKEN = "1567504890375_8741a554-c25e-428f-a807-a69bac373315-9999"; // replace with your customer token (can be found in mycrocast-Studio)
 
     private InternetConnectionWatcher connectionWatcher;
 

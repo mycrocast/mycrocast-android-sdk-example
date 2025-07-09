@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import de.mycrocast.android.sdk.core.Mycrocast;
 import de.mycrocast.android.sdk.core.util.Optional;
@@ -103,7 +104,7 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
 
         // create broadcast receiver, to receive necessary intents
         this.receiver = this.createBroadcastReceiver();
-        this.registerReceiver(this.receiver, this.createIntentFilter());
+        ContextCompat.registerReceiver(this, this.receiver, this.createIntentFilter(), ContextCompat.RECEIVER_NOT_EXPORTED);
 
         // create audio-track
         this.audioTrack = this.createAudioTrack();
@@ -296,7 +297,7 @@ public class LiveStreamListenerService extends Service implements LiveStreamList
         NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.createNotificationChannel(channel);
 
-        Intent stopIntent = new Intent(BroadcastIntent.STOP_LIVE_STREAM);
+        Intent stopIntent = new Intent(BroadcastIntent.stopLivestream());
         PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, 0, stopIntent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
